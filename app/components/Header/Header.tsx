@@ -1,0 +1,19 @@
+import Link from "next/link";
+import css from "./Header.module.css";
+import Image from "next/image";
+export default function Header() {
+  return (
+    <header className={css.header}>
+      <div className={css.container}>
+        <Link href="/" className={css.logo}>
+          <Image src="/Logo.svg" alt="TravelTrucks" width={136} height={16} />
+        </Link>
+
+        <nav className={css.navigation}>
+          <Link href="/">Home</Link>
+          <Link href="/catalog">Catalog</Link>
+        </nav>
+      </div>
+    </header>
+  );
+}

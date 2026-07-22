@@ -3,8 +3,10 @@
     width: 100%;
     height: calc(100vh - 72px);
     overflow: hidden;
-}
+    display: flex;
+    align-items: center;
 
+}
 .imagewrap {
     position: absolute;
     inset: 0;
@@ -16,8 +18,7 @@
 
 .heroContent {
     position: absolute;
-    margin-top: 284px;
-    left: 64px;
+    left: 13%;
     transform: translateY(-50%);
     color: white;
 }

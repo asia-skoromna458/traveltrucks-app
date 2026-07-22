@@ -3,6 +3,7 @@ import Header from "./components/Header/Header";
 
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
+import QueryProvider from "./components/providers/QueryProvider";
 
 const inter = Inter({
   variable: "--font-family",
@@ -17,6 +18,9 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Camper Rental",
   description: "Find and book your perfect camper",
+  icons: {
+    icon: "/favicon.png ",
+  },
 };
 
 export default function RootLayout({
@@ -28,7 +32,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${manrope.variable}`}>
         <Header />
-        {children}
+        <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
   );

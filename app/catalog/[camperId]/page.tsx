@@ -1,7 +1,15 @@
-export default function NotFound() {
-  return (
-    <div style={{ padding: 40, textAlign: "center" }}>
-      <h2>Така історія відсутня</h2>
-    </div>
-  );
+import { getCamperById } from "@/app/services/api";
+
+import CamperPageClient from "./CamperPageClient";
+
+export default async function CamperPage({
+  params,
+}: {
+  params: { camperId: string };
+}) {
+  const { camperId } = await params;
+
+  const camper = await getCamperById(camperId);
+
+  return <CamperPageClient camper={camper} />;
 }

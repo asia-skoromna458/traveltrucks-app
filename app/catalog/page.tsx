@@ -1,51 +1,85 @@
 "use client";
+
+import { useInfiniteQuery } from "@tanstack/react-query";
 import Filter from "../components/CategoryFilter/CategoryFilter";
-import css from "./page.module.css";
-import { getAllCamper } from "../services/api";
-import { Camper } from "../types/camper";
-import { useEffect, useState } from "react";
 import CamperCard from "../components/CamperCard/CamperCard";
 import LoadMoreButton from "../ui/LoadMoreButton/LoadMoreButton";
+import { getAllCamper } from "../services/api";
+import css from "./page.module.css";
+import { useState } from "react";
+import { CamperFilters } from "../types/filter";
 
 export default function CatalogPage() {
-  const [campers, setCampers] = useState<Camper[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false);
-  const [page, setPage] = useState(1);
-  const LoadMore = async () => {
-    setIsLoadingMore(true);
-
-    const res = await getAllCamper({ page: page + 1, perPage: 4 });
-
-    setCampers((prev) => [...prev, ...res.campers]);
-    setPage((prev) => prev + 1);
-
-    setIsLoadingMore(false);
+  const emptyFilters = {
+    location: "",
+    form: "",
+    engine: "",
+    transmission: "",
   };
+  const [draftFilters, setDraftFilters] = useState<CamperFilters>(emptyFilters);
+  const [filters, setFilters] = useState<CamperFilters>(emptyFilters);
+  const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ["campers", filters],
 
-  useEffect(() => {
-    const fetchCamper = async () => {
-      setIsLoading(true);
-      try {
-        const res = await getAllCamper({ page: 1, perPage: 4 });
-        setCampers(res.campers);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchCamper();
-  }, []);
+      initialPageParam: 1,
+
+      queryFn: ({ pageParam }) =>
+        getAllCamper({
+          page: pageParam,
+          perPage: 4,
+
+          ...(filters.location && {
+            location: filters.location,
+          }),
+
+          ...(filters.form && {
+            form: filters.form,
+          }),
+
+          ...(filters.engine && {
+            engine: filters.engine,
+          }),
+
+          ...(filters.transmission && {
+            transmission: filters.transmission,
+          }),
+        }),
+
+      getNextPageParam: (lastPage) => {
+        if (lastPage.page >= lastPage.totalPages) {
+          return undefined;
+        }
+
+        return lastPage.page + 1;
+      },
+    });
+
+  const campers = data?.pages.flatMap((page) => page.campers) ?? [];
+
   if (isLoading) return <p>Loading...</p>;
+
   return (
     <div className={css.catalogPage}>
       <div className={css.filtersWrapper}>
-        <Filter />
+        <Filter
+          draftFilters={draftFilters}
+          setDraftFilters={setDraftFilters}
+          setFilters={setFilters}
+        />
       </div>
+
       <div className={css.cardsList}>
         {campers.map((camper) => (
           <CamperCard key={camper.id} camper={camper} />
         ))}
-        <LoadMoreButton onClick={LoadMore} isLoading={isLoadingMore} />
+
+        {hasNextPage && (
+          <LoadMoreButton
+            onClick={() => fetchNextPage()}
+            isLoading={isFetchingNextPage}
+          />
+        )}
       </div>
     </div>
   );

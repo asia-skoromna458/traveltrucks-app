@@ -1,23 +1,35 @@
 "use client";
-import { useState } from "react";
 import css from "./CategoryFilter.module.css";
 import { MdOutlineMap } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
 import FilterGroup from "./FilterGroup";
+import { CamperFilters } from "@/app/types/filter";
 
-export default function Filter() {
-  const [location, setLocation] = useState("Kyiv");
-
-  const handleSearch = () => {
-    console.log("Filters:", {
-      location,
-      // ці значення ти отримаєш з FilterGroup через props або контекст
-    });
+interface FilterProp {
+  draftFilters: CamperFilters;
+  setDraftFilters: React.Dispatch<React.SetStateAction<CamperFilters>>;
+  setFilters: React.Dispatch<React.SetStateAction<CamperFilters>>;
+}
+export default function Filter({
+  draftFilters,
+  setDraftFilters,
+  setFilters,
+}: FilterProp) {
+  const updateFilter = (key: keyof CamperFilters, value: string) => {
+    setDraftFilters((prev) => ({ ...prev, [key]: value }));
   };
-
+  const handlSearch = () => {
+    setFilters(draftFilters);
+  };
   const handleClear = () => {
-    setLocation("Kyiv");
-    // тут ти також очистиш стани у FilterGroup
+    const clear = {
+      location: "",
+      form: "",
+      engine: "",
+      transmission: "",
+    };
+    setDraftFilters(clear);
+    setFilters(clear);
   };
 
   return (
@@ -29,19 +41,19 @@ export default function Filter() {
         <input
           className={css.input}
           type="text"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
+          value={draftFilters.location}
+          onChange={(e) => updateFilter("location", e.target.value)}
           placeholder="Kyiv"
         />
       </div>
 
-      <FilterGroup />
+      <FilterGroup filters={draftFilters} updateFilter={updateFilter} />
 
-      <button className={css.searchButton} onClick={handleSearch}>
+      <button type="button" className={css.searchButton} onClick={handlSearch}>
         Search
       </button>
 
-      <button className={css.cleanButton} onClick={handleClear}>
+      <button type="button" className={css.cleanButton} onClick={handleClear}>
         <IoMdClose className={css.closeIcon} />
         Clear filters
       </button>

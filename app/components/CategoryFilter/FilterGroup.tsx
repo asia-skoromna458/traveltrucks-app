@@ -1,11 +1,17 @@
-import { useState } from "react";
 import css from "./CategoryFilter.module.css";
+import { CamperFilters } from "@/app/types/filter";
+import {
+  camperForms,
+  camperEngines,
+  camperTransmission,
+} from "@/app/constants/filters";
 
-export default function FilterGroup() {
-  const [camperForm, setCamperForm] = useState("");
-  const [engine, setEngine] = useState("");
-  const [transmission, setTransmission] = useState("");
+interface Props {
+  filters: CamperFilters;
+  updateFilter: (key: keyof CamperFilters, value: string) => void;
+}
 
+export default function FilterGroup({ filters, updateFilter }: Props) {
   return (
     <>
       <h2 className={css.filter}>Filters</h2>
@@ -13,52 +19,52 @@ export default function FilterGroup() {
       <div className={css.group}>
         <p className={css.groupTitle}>Camper form</p>
         <div className={css.circleList}>
-          {["Alcove", "Panel", "Integr", "Semi"].map((item) => (
+          {camperForms.map((item) => (
             <div
-              key={item}
+              key={item.value}
               className={css.circleRow}
-              onClick={() => setCamperForm(item)}
+              onClick={() => updateFilter("form", item.value)}
             >
               <span
                 className={`${css.circle} ${
-                  camperForm === item ? css.active : ""
+                  filters.form === item.value ? css.active : ""
                 }`}
               ></span>
-              <span className={css.label}>{item}</span>
+              <span className={css.label}>{item.label}</span>
             </div>
           ))}
         </div>
 
         <p className={css.groupTitle}>Engine</p>
         <div className={css.circleList}>
-          {["Diesel", "Petrol", "Hybrid", "Electric"].map((item) => (
+          {camperEngines.map((item) => (
             <div
-              key={item}
+              key={item.value}
               className={css.circleRow}
-              onClick={() => setEngine(item)}
+              onClick={() => updateFilter("engine", item.value)}
             >
               <span
-                className={`${css.circle} ${engine === item ? css.active : ""}`}
+                className={`${css.circle} ${filters.engine === item.value ? css.active : ""}`}
               ></span>
-              <span className={css.label}>{item}</span>
+              <span className={css.label}>{item.label}</span>
             </div>
           ))}
         </div>
 
         <p className={css.groupTitle}>Transmission</p>
         <div className={css.circleList}>
-          {["Automatic", "Manual"].map((item) => (
+          {camperTransmission.map((item) => (
             <div
-              key={item}
+              key={item.value}
               className={css.circleRow}
-              onClick={() => setTransmission(item)}
+              onClick={() => updateFilter("transmission", item.value)}
             >
               <span
                 className={`${css.circle} ${
-                  transmission === item ? css.active : ""
+                  filters.transmission === item.value ? css.active : ""
                 }`}
               ></span>
-              <span className={css.label}>{item}</span>
+              <span className={css.label}>{item.label}</span>
             </div>
           ))}
         </div>

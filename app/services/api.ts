@@ -15,7 +15,16 @@ interface GetAllCampersResponse {
 
 
 
-export const getAllCamper = async (params: { page?: number; perPage?: number}):Promise<GetAllCampersResponse> => {
+export const getAllCamper = async (
+    params:
+        {
+            page?: number;
+            perPage?: number;
+            location?: string;
+            form?: string;
+            engine?: string;
+            transmission?: string;
+        }): Promise<GetAllCampersResponse> => {
     const res = await api.get<GetAllCampersResponse>('/campers', {params});
     return res.data
 }

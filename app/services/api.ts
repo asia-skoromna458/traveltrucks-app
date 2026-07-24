@@ -2,6 +2,7 @@ import axios from "axios";
 import { Camper } from "../types/camper";
 
 
+
 export const api = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL,
 })
@@ -33,3 +34,5 @@ export const getCamperById = async (id: string) => {
   const res = await api.get(`/campers/${id}`);
   return res.data;
 };
+
+

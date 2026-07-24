@@ -8,6 +8,7 @@ import { getAllCamper } from "../services/api";
 import css from "./page.module.css";
 import { useState } from "react";
 import { CamperFilters } from "../types/filter";
+import { buildCamperParams } from "../utils/camperFilters";
 
 export default function CatalogPage() {
   const emptyFilters = {
@@ -25,26 +26,7 @@ export default function CatalogPage() {
       initialPageParam: 1,
 
       queryFn: ({ pageParam }) =>
-        getAllCamper({
-          page: pageParam,
-          perPage: 4,
-
-          ...(filters.location && {
-            location: filters.location,
-          }),
-
-          ...(filters.form && {
-            form: filters.form,
-          }),
-
-          ...(filters.engine && {
-            engine: filters.engine,
-          }),
-
-          ...(filters.transmission && {
-            transmission: filters.transmission,
-          }),
-        }),
+        getAllCamper(buildCamperParams(filters, pageParam)),
 
       getNextPageParam: (lastPage) => {
         if (lastPage.page >= lastPage.totalPages) {

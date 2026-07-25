@@ -1,7 +1,12 @@
 import { Camper } from "@/app/types/camper";
-import { FaRegStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 import css from "./CamperDetails.module.css";
 import { MdOutlineMap } from "react-icons/md";
+// import {
+//   camperForms,
+//   camperEngines,
+//   camperTransmission,
+// } from "@/app/constants/filters";
 interface CamperCardProp {
   camper: Camper;
 }
@@ -9,21 +14,23 @@ interface CamperCardProp {
 export default function CamperDetails({ camper }: CamperCardProp) {
   return (
     <div>
-      <>
-        <h1>{camper.name}</h1>
-        <p>
-          <FaRegStar className={css.ratingIcon} />
-          {camper.rating} ({camper.totalReviews} reviews)
-        </p>
-        <p>
-          <MdOutlineMap className={css.icon} />
-          {camper.location}
-        </p>
+      <div className={css.mainDescr}>
+        <h2 className={css.name}>{camper.name}</h2>
+        <div className={css.info}>
+          <p>
+            <FaStar className={css.ratingIcon} />
+            {camper.rating} ({camper.totalReviews} reviews)
+          </p>
+          <p>
+            <MdOutlineMap className={css.icon} />
+            {camper.location}
+          </p>
+        </div>
         <h2 className={css.price}>€{camper.price}</h2>
         <p className={css.descr}>{camper.description}</p>
-      </>
-      <>
-        <h1>Vehicle details</h1>
+      </div>
+      <div className={css.details}>
+        <h2 className={css.name}>Vehicle details</h2>
         <div className={css.amenities}>
           {camper.amenities.map((amenity) => (
             <div key={amenity} className={css.amenity}>
@@ -31,6 +38,7 @@ export default function CamperDetails({ camper }: CamperCardProp) {
             </div>
           ))}
         </div>
+        <hr className={css.divider} />
         <div className={css.vehicleDetails}>
           <div className={css.vehicleItem}>
             <span>Form</span>
@@ -62,7 +70,7 @@ export default function CamperDetails({ camper }: CamperCardProp) {
             <strong>{camper.consumption}</strong>
           </div>
         </div>
-      </>
+      </div>
     </div>
   );
 }

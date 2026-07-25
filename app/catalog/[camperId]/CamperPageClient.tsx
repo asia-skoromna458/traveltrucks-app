@@ -15,15 +15,12 @@ interface CamperCardProp {
   }[];
 }
 export default function CamperPageClient({ camper, reviews }: CamperCardProp) {
-  console.log(camper);
   return (
-    <>
-      <div className={css.details}>
-        <Gallery images={camper.gallery} />
-        <CamperDetails camper={camper} />
-        <Reviews reviews={reviews} />
-        <BookingForm />
-      </div>
-    </>
+    <div className={css.details}>
+      <Gallery images={camper.gallery} />
+      <CamperDetails camper={camper} />
+      <Reviews reviews={reviews} />
+      <BookingForm camperId={camper.id} />
+    </div>
   );
 }

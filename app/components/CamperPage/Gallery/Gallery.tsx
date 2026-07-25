@@ -34,7 +34,7 @@ export default function CamperGallery({ images }: CamperGalleryProps) {
           } as React.CSSProperties
         }
         loop
-        spaceBetween={10}
+        spaceBetween={27}
         navigation
         thumbs={{
           swiper: thumbsSwiper,

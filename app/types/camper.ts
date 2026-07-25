@@ -22,4 +22,9 @@ export interface Camper {
   createdAt: string;
   updatedAt: string;
   totalReviews: number;
+   gallery: {
+    id: string;
+    thumb: string;
+    original: string;
+  }[];
 }

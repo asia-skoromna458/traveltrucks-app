@@ -1,5 +1,5 @@
 import { Camper } from "@/app/types/camper";
-import { FaRegStar, FaGasPump } from "react-icons/fa";
+import { FaRegStar } from "react-icons/fa";
 import css from "./CamperDetails.module.css";
 import { MdOutlineMap } from "react-icons/md";
 interface CamperCardProp {

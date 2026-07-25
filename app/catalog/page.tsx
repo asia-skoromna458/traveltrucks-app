@@ -3,6 +3,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
+
 import Filter from "../components/CategoryFilter/CategoryFilter";
 import CamperCard from "../components/CamperCard/CamperCard";
 import EmptyState from "../components/EmptyState/EmptyState";
@@ -72,10 +73,12 @@ export default function CatalogPage() {
             ))}
 
             {hasNextPage && (
-              <LoadMoreButton
-                onClick={() => fetchNextPage()}
-                isLoading={isFetchingNextPage}
-              />
+              <div className={css.loadMoreWrapper}>
+                <LoadMoreButton
+                  onClick={() => fetchNextPage()}
+                  isLoading={isFetchingNextPage}
+                />
+              </div>
             )}
           </>
         ) : (

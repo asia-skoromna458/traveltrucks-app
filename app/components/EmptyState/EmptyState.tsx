@@ -16,28 +16,33 @@ export default function EmptyState({
         <Image src="/image 1.jpg" fill alt="Not found" className={css.image} />
       </div>
 
-      <h2 className={css.notFoundTitle}>No campers found</h2>
+      <div className={css.notFound}>
+        <h2 className={css.notFoundTitle}>No campers found</h2>
 
-      <p className={css.description}>
-        We couldn&apos;t find any campers that match your filters. Try adjusting
-        your search or clearing some filters.
-      </p>
+        <p className={css.description}>
+          We couldn&apos;t find any campers that match your filters. <br />
+          Try adjusting your search or clearing some filters.
+        </p>
+      </div>
 
-      <button
-        type="button"
-        className={css.cleanButton}
-        onClick={onClearFilters}
-      >
-        <IoMdClose className={css.closeIcon} /> Clear filters
-      </button>
+      <div className={css.buttons}>
+        <button
+          type="button"
+          className={css.cleanButton}
+          onClick={onClearFilters}
+        >
+          <IoMdClose className={css.closeIcon} />
+          Clear filters
+        </button>
 
-      <button
-        type="button"
-        className={css.allCampersButton}
-        onClick={onVievAll}
-      >
-        View all campers
-      </button>
+        <button
+          type="button"
+          className={css.allCampersButton}
+          onClick={onVievAll}
+        >
+          View all campers
+        </button>
+      </div>
     </div>
   );
 }

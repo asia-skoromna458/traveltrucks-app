@@ -12,6 +12,7 @@ background: #f7f7f7;
  .inputWrapper {
      position: relative;
     width: 360px;
+    margin-top: 8px;
 
  }
 
@@ -56,6 +57,9 @@ background: #f7f7f7;
         background: #829b91;
         color: #fff;
         margin-top: 48px;
+            font-size: 16px;
+            letter-spacing: -0.01em;
+            cursor: pointer;
  }
  .searchButton:hover{
     background: #6d7b75;
@@ -63,21 +67,26 @@ background: #f7f7f7;
  .cleanButton{
     border: 1px solid #dadde1;
         border-radius: 200px;
-     
         width: 312px;
         height: 56px;
         background: #fff;
         display: flex;
             align-items: center;
             justify-content: center;
-
             gap: 4px;
             margin-top: 16px;
+                font-size: 16px;
+                letter-spacing: -0.01em;
+                color: #101828;
+                cursor: pointer;
+ }
+ .cleanButton:hover{
+    border: 1px solid #6d7b75;
  }
 
  .closeIcon {
-     width: 12px;
-     height: 12px;
+     width: 24px;
+     height: 24px;
      cursor: pointer;
  }
  .groupTitle{
@@ -105,6 +114,8 @@ background: #f7f7f7;
     flex-direction: column;
     gap: 8px;
     margin-top: 8px;
+        line-height: 1.5;
+        color: #101828;
 }
 
 .circleRow {

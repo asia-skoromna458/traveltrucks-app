@@ -23,16 +23,6 @@ export default function Filter({
   const handlSearch = () => {
     setFilters(draftFilters);
   };
-  // const handleClear = () => {
-  //   const clear = {
-  //     location: "",
-  //     form: "",
-  //     engine: "",
-  //     transmission: "",
-  //   };
-  //   setDraftFilters(clear);
-  //   setFilters(clear);
-  // };
 
   return (
     <div className={css.container}>

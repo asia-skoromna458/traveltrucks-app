@@ -1,24 +1,34 @@
 "use client";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { useState } from "react";
+
 import Filter from "../components/CategoryFilter/CategoryFilter";
 import CamperCard from "../components/CamperCard/CamperCard";
+import EmptyState from "../components/EmptyState/EmptyState";
 import LoadMoreButton from "../ui/LoadMoreButton/LoadMoreButton";
+
 import { getAllCamper } from "../services/api";
-import css from "./page.module.css";
-import { useState } from "react";
 import { CamperFilters } from "../types/filter";
-import { buildCamperParams } from "../utils/camperFilters";
+import { buildCamperParams, emptyFilters } from "../utils/camperFilters";
+
+import css from "./page.module.css";
 
 export default function CatalogPage() {
-  const emptyFilters = {
-    location: "",
-    form: "",
-    engine: "",
-    transmission: "",
+  const [draftFilters, setDraftFilters] = useState<CamperFilters>({
+    ...emptyFilters,
+  });
+
+  const [filters, setFilters] = useState<CamperFilters>({ ...emptyFilters });
+
+  const handleClearFilters = () => {
+    setDraftFilters({ ...emptyFilters });
+    setFilters({ ...emptyFilters });
   };
-  const [draftFilters, setDraftFilters] = useState<CamperFilters>(emptyFilters);
-  const [filters, setFilters] = useState<CamperFilters>(emptyFilters);
+  const handleViewAll = () => {
+    setFilters({ ...emptyFilters });
+  };
+
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
       queryKey: ["campers", filters],
@@ -39,7 +49,9 @@ export default function CatalogPage() {
 
   const campers = data?.pages.flatMap((page) => page.campers) ?? [];
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className={css.catalogPage}>
@@ -48,18 +60,28 @@ export default function CatalogPage() {
           draftFilters={draftFilters}
           setDraftFilters={setDraftFilters}
           setFilters={setFilters}
+          onClearFilters={handleClearFilters}
         />
       </div>
 
       <div className={css.cardsList}>
-        {campers.map((camper) => (
-          <CamperCard key={camper.id} camper={camper} />
-        ))}
+        {campers.length > 0 ? (
+          <>
+            {campers.map((camper) => (
+              <CamperCard key={camper.id} camper={camper} />
+            ))}
 
-        {hasNextPage && (
-          <LoadMoreButton
-            onClick={() => fetchNextPage()}
-            isLoading={isFetchingNextPage}
+            {hasNextPage && (
+              <LoadMoreButton
+                onClick={() => fetchNextPage()}
+                isLoading={isFetchingNextPage}
+              />
+            )}
+          </>
+        ) : (
+          <EmptyState
+            onClearFilters={handleClearFilters}
+            onVievAll={handleViewAll}
           />
         )}
       </div>

@@ -36,3 +36,16 @@ export const getCamperById = async (id: string) => {
 };
 
 
+export const getCamperReviews = async (id: string) => {
+  const res = await api.get(`/campers/${id}/reviews`)
+  return res.data
+}
+interface BookingData{
+  name: string
+  email: string
+}
+
+export const bookingRequest = async (id: string, data: BookingData) => {
+  const res = await api.post(`/campers/${id}/booking-request`,data)
+  return res.data
+}

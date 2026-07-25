@@ -13,3 +13,9 @@ export const buildCamperParams = (
     transmission: filters.transmission,
   }),
 });
+export const emptyFilters: CamperFilters = {
+  location: "",
+  form: "",
+  engine: "",
+  transmission: "",
+};

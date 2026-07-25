@@ -1,0 +1,19 @@
+.container {
+    border-radius: 16px;
+    padding: 24px;
+    width: 888px;
+    height: 840px;
+    background: #f7f7f7;
+}
+
+.imageWrapper {
+    position: relative;
+    width: 488px;
+    height: 463px;
+}
+
+.image {
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    
+}

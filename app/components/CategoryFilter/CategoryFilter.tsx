@@ -9,11 +9,13 @@ interface FilterProp {
   draftFilters: CamperFilters;
   setDraftFilters: React.Dispatch<React.SetStateAction<CamperFilters>>;
   setFilters: React.Dispatch<React.SetStateAction<CamperFilters>>;
+  onClearFilters: () => void;
 }
 export default function Filter({
   draftFilters,
   setDraftFilters,
   setFilters,
+  onClearFilters,
 }: FilterProp) {
   const updateFilter = (key: keyof CamperFilters, value: string) => {
     setDraftFilters((prev) => ({ ...prev, [key]: value }));
@@ -21,16 +23,16 @@ export default function Filter({
   const handlSearch = () => {
     setFilters(draftFilters);
   };
-  const handleClear = () => {
-    const clear = {
-      location: "",
-      form: "",
-      engine: "",
-      transmission: "",
-    };
-    setDraftFilters(clear);
-    setFilters(clear);
-  };
+  // const handleClear = () => {
+  //   const clear = {
+  //     location: "",
+  //     form: "",
+  //     engine: "",
+  //     transmission: "",
+  //   };
+  //   setDraftFilters(clear);
+  //   setFilters(clear);
+  // };
 
   return (
     <div className={css.container}>
@@ -53,7 +55,11 @@ export default function Filter({
         Search
       </button>
 
-      <button type="button" className={css.cleanButton} onClick={handleClear}>
+      <button
+        type="button"
+        className={css.cleanButton}
+        onClick={onClearFilters}
+      >
         <IoMdClose className={css.closeIcon} />
         Clear filters
       </button>

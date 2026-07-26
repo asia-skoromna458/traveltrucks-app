@@ -1,25 +1,22 @@
 .catalogPage {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 63px 48px 64px 52px;
-  display: grid;
-  grid-template-columns: 360px 888px;
-  gap: 65px;
-}
-.cardsList {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  width: 888px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 63px 48px 120px 52px;
+
+    display: grid;
+    grid-template-columns: 360px 888px;
+    gap: 65px;
 }
 
-.catalogPage {
-  display: grid;
-  grid-template-columns: 360px 1fr;
-  gap: 65px;
+.cardsList {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
 }
+
 .loadMoreWrapper {
-  width: 888px;
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
+
+

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Header from "./components/Header/Header";
 
 import { Inter, Manrope } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import QueryProvider from "./components/providers/QueryProvider";
 
@@ -32,6 +33,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${manrope.variable}`}>
         <Header />
+        <Toaster position="top-right" />
         <QueryProvider>{children}</QueryProvider>
       </body>
     </html>

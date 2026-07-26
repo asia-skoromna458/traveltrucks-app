@@ -1,93 +1,121 @@
+/* CONTAINER */
+
 .container {
-    border-radius: 16px;
-    padding: 24px;
-    background: #f7f7f7;
-    width: 888px;
+  width: 888px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    /* замість center */
+  border-radius: 16px;
+  background: #f7f7f7;
 
-    gap: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* IMAGE */
+
 .imageWrapper {
-    position: relative;
-    width: 488px;
-    height: 463px;
+  position: relative;
+
+  width: 488px;
+  height: 463px;
 }
 
 .image {
-    object-fit: contain;
-        mix-blend-mode: multiply;
-        filter: contrast(1.1);
-
-    
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  filter: contrast(1.1);
 }
+
+/* CONTENT */
+
 .notFound {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
 }
-.notFoundTitle{
-        font-size: 24px;
-        line-height: 1.3;
-        text-align: center;
-        color: #101828;
-        margin-bottom: 16px;
+
+.notFoundTitle {
+  margin-top: 21px;
+  margin-bottom: 16px;
+
+  font-size: 24px;
+  line-height: 1.3;
+  color: #101828;
 }
+
 .description {
-    text-align: center;
-    color: #475467;
-    line-height: 1.5;
+  margin-bottom: 43px;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #101828;
+
+  text-align: center;
 }
+
+/* BUTTONS */
+
 .buttons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin-bottom: 161px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 16px;
+  margin-bottom: 161px;
 }
-.cleanButton {
-    border: 1px solid #dadde1;
-    border-radius: 200px;
-    width: 192px;
-        height: 56px;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    font-size: 16px;
-    letter-spacing: -0.01em;
-    color: #101828;
-    cursor: pointer;
-}
-.cleanButton:hover{
-    border: 1px solid #6d7b75;
-}
+
+.cleanButton,
 .allCampersButton {
-    border: none;
-    background: #829b91;
-    border-radius: 200px;
-    height: 56px;
-    padding: 0 32px;
+  height: 56px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  border-radius: 200px;
 
-    white-space: nowrap;
-    cursor: pointer;
+  font-size: 16px;
+  letter-spacing: -0.01em;
 
-    font-size: 16px;
-    line-height: 1.5;
-    letter-spacing: -0.01em;
-    color: #fff;
+  cursor: pointer;
 }
-.allCampersButton:hover{
-    background: #6d7b75;
+
+/* CLEAR BUTTON */
+
+.cleanButton {
+  width: 192px;
+
+  border: 1px solid #dadde1;
+  background: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  color: #101828;
+}
+
+.cleanButton:hover {
+  border-color: #6d7b75;
+}
+
+/* VIEW ALL BUTTON */
+
+.allCampersButton {
+  padding: 0 32px;
+
+  border: none;
+  background: #829b91;
+
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  white-space: nowrap;
+}
+
+.allCampersButton:hover {
+  background: #6d7b75;
 }

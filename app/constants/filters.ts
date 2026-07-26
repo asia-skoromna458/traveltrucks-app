@@ -46,4 +46,44 @@ export const camperTransmission = [
         label: "Manual"
     }
       
-  ]
+]
+  
+export const vehicleDetails = [
+    {
+    value: "ac",
+    label: "AC",
+  },
+  {
+    value: "bathroom",
+    label: "Bathroom",
+  },
+  {
+    value: "kitchen",
+    label: "Kitchen",
+  },
+  {
+    value: "radio",
+    label: "Radio",
+  },
+  {
+    value: "refrigerator",
+    label: "Refrigerator",
+  },
+  {
+    value: "water",
+    label: "Water",
+  },
+    {
+    value: "tv",
+    label: "TV",
+  },
+      {
+    value: "microwave",
+    label: "Microwaver",
+  },
+          {
+    value: "gas",
+    label: "Gas",
+  },
+  
+]

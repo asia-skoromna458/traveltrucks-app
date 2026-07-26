@@ -46,6 +46,6 @@ interface BookingData{
 }
 
 export const bookingRequest = async (id: string, data: BookingData) => {
-  const res = await api.post(`/campers/${id}/booking-request`,data)
+  const res = await api.post(`/campers/${id}/booking-requests`,data)
   return res.data
 }

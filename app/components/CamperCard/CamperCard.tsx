@@ -43,11 +43,11 @@ export default function CamperCard({ camper }: CamperCardProp) {
           <h2 className={css.price}>€{camper.price}</h2>
         </div>
         <div className={css.info}>
-          <p>
+          <p className={css.rating}>
             <FaStar className={css.ratingIcon} />
             {camper.rating} ({camper.totalReviews} reviews)
           </p>
-          <p>
+          <p className={css.rating}>
             <MdOutlineMap className={css.icon} />
             {camper.location}
           </p>
@@ -68,7 +68,11 @@ export default function CamperCard({ camper }: CamperCardProp) {
           </p>
         </div>
 
-        <Link className={css.showDetails} href={`/catalog/${camper.id}`}>
+        <Link
+          className={css.showDetails}
+          href={`/catalog/${camper.id}`}
+          target="_blank"
+        >
           Show more
         </Link>
       </div>

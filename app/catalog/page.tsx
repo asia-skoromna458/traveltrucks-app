@@ -3,7 +3,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
-
 import Filter from "../components/CategoryFilter/CategoryFilter";
 import CamperCard from "../components/CamperCard/CamperCard";
 import EmptyState from "../components/EmptyState/EmptyState";
@@ -20,17 +19,20 @@ export default function CatalogPage() {
     ...emptyFilters,
   });
 
-  const [filters, setFilters] = useState<CamperFilters>({ ...emptyFilters });
+  const [filters, setFilters] = useState<CamperFilters>({
+    ...emptyFilters,
+  });
 
   const handleClearFilters = () => {
     setDraftFilters({ ...emptyFilters });
     setFilters({ ...emptyFilters });
   };
+
   const handleViewAll = () => {
     setFilters({ ...emptyFilters });
   };
 
-  const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
       queryKey: ["campers", filters],
 
@@ -49,10 +51,6 @@ export default function CatalogPage() {
     });
 
   const campers = data?.pages.flatMap((page) => page.campers) ?? [];
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
 
   return (
     <div className={css.catalogPage}>

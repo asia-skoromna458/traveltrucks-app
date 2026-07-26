@@ -21,7 +21,9 @@ export default function Header() {
           </Link>
           <Link
             href="/catalog"
-            className={`${css.navLink} ${pathname === "/catalog" ? css.active : ""}`}
+            className={`${css.navLink} ${
+              pathname.startsWith("/catalog") ? css.active : ""
+            }`}
           >
             Catalog
           </Link>

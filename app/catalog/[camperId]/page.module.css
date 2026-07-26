@@ -1,11 +1,9 @@
 .details {
-  padding: 64px;
-  display: grid;
-  grid-template-columns: 640px minmax(0, 1fr);
-  column-gap: 24px;
-  align-items: start;
-}
+    padding: 64px;
+    display: grid;
+    grid-template-columns: 640px minmax(0, 1fr);
+    column-gap: 24px;
+    align-items: start;
 
-.details > * {
-  min-width: 0;
+    margin: 0 auto;
 }

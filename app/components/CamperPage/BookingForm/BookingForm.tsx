@@ -79,6 +79,8 @@ export default function BookingForm({ camperId }: BookingFormProps) {
 
       <form onSubmit={handleSubmit}>
         <div className={css.inputWrapper}>
+          {errors.name && <label className={css.label}>Name*</label>}
+
           <input
             className={`${css.input} ${errors.name ? css.inputError : ""}`}
             name="name"
@@ -92,6 +94,8 @@ export default function BookingForm({ camperId }: BookingFormProps) {
         </div>
 
         <div className={css.inputWrapper}>
+          {errors.email && <label className={css.label}>Email*</label>}
+
           <input
             className={`${css.input} ${errors.email ? css.inputError : ""}`}
             name="email"

@@ -1,37 +1,30 @@
 import { FaStar } from "react-icons/fa";
 import css from "./Reviews.module.css";
+import { Review } from "@/app/types/camper";
 
 interface ReviewsProps {
-  reviews: {
-    id: string;
-    reviewer_name: string;
-    reviewer_rating: number;
-    comment: string;
-    createdAt: string;
-  }[];
+  reviews: Review[];
 }
 
 export default function Reviews({ reviews }: ReviewsProps) {
   return (
-    <div className={css.container}>
-      <h2 className={css.reviews}>Reviews</h2>
+    <section className={css.container}>
+      <h2 className={css.title}>Reviews</h2>
 
-      {reviews.map((review) => (
-        <div key={review.id} className={css.review}>
+      {reviews.map(({ id, reviewer_name, reviewer_rating, comment }) => (
+        <article key={id} className={css.review}>
           <div className={css.userInfo}>
-            <div className={css.avatar}>
-              {review.reviewer_name.charAt(0).toUpperCase()}
-            </div>
+            <div className={css.avatar}>{reviewer_name[0].toUpperCase()}</div>
 
             <div>
-              <p className={css.name}>{review.reviewer_name}</p>
+              <p className={css.name}>{reviewer_name}</p>
 
               <div className={css.rating}>
-                {[1, 2, 3, 4, 5].map((star) => (
+                {Array.from({ length: 5 }).map((_, index) => (
                   <FaStar
-                    key={star}
+                    key={index}
                     className={
-                      star <= review.reviewer_rating ? css.starActive : css.star
+                      index + 1 <= reviewer_rating ? css.starActive : css.star
                     }
                   />
                 ))}
@@ -39,9 +32,9 @@ export default function Reviews({ reviews }: ReviewsProps) {
             </div>
           </div>
 
-          <p className={css.comment}>{review.comment}</p>
-        </div>
+          <p className={css.comment}>{comment}</p>
+        </article>
       ))}
-    </div>
+    </section>
   );
 }
